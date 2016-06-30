@@ -3,26 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "browserify": {
-    "extension": [
-      "jsx"
-    ],
-    "transform": [
-      [
-        "babelify",
-        {
-          "presets": [
-            "es2015",
-            "react",
-            "babel-preset-stage-1"
-          ]
-        }
-      ]
-    ]
-  },
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
     "lodash": "^4.13.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
@@ -31,17 +12,23 @@
   },
   "devDependencies": {
     "babel": "^6.5.2",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
+    "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-1": "^6.5.0",
     "babelify": "^7.3.0",
     "browserify": "^13.0.1",
-    "watchify": "^3.7.0"
+    "css-loader": "^0.23.1",
+    "hjs-webpack": "^8.3.0",
+    "style-loader": "^0.13.1",
+    "watchify": "^3.7.0",
+    "webpack": "^1.13.1"
   },
   "scripts": {
-    "build": "browserify src/index.js -o htdocs/build.js -v -d",
-    "watch": "watchify src/index.js -o htdocs/build.js -v -d"
+    "start": "./node_modules/.bin/hjs-dev-server"
   },
-  "author": "",
+  "author": "Andrew Kennedy",
   "license": "ISC"
 }

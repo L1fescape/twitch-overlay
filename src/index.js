@@ -1,19 +1,23 @@
-console.log('lmao');
-
 import React, { Component } from 'react'
 import ReactDom from 'react-dom'
+
+import Banner from './components/banner'
+import Webcam from './components/webcam'
+
+import './style.css'
 
 class Page extends Component {
   render() {
     return (
-      <div className="banner">
-        <h2>Hello! Welcome to L1fescape's stream!</h2>
+      <div>
+        <Banner />
+        <Webcam />
       </div>
     );
   }
 }
 
-const root = document.getElementById('app');
+const root = document.getElementById('root');
 
 ReactDom.render(
   <Page />,

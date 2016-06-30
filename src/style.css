@@ -1,0 +1,30 @@
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+.banner {
+  background: black;
+  width: 100%;
+  color: white;
+}
+
+h2 {
+  margin: 0;
+  padding: 20px;
+}
+
+.webcam {
+  position: absolute;
+  top: 350px;
+  left: 0;
+  background: black;
+  height: 340px;
+  width: 430px;
+}
+
+.current-song {
+  position: absolute;
+  bottom: 0;
+  color: white;
+}
