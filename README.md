@@ -19,3 +19,8 @@
 
 4. Add a new browser media source inside of OBS and point the url to `http://localhost:3000`
 5. Start streaming!
+
+## TODO
+
+- I've written an expressjs backend to recieve and display the current song I'm listening to in Chrome. Inside the `CurrentSong` component in `src/components` I'm fetching the current song from that server and displaying it on the overlay. I should create a separate module for this that you can install.
+- Style all the things! It's really ugly right now...
