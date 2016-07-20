@@ -4,6 +4,8 @@ import ReactDom from 'react-dom'
 import moment from 'moment'
 import _ from 'lodash'
 
+import './time.css';
+
 export default class Time extends Component {
   constructor() {
     super();
@@ -21,6 +23,10 @@ export default class Time extends Component {
   }
 
   render() {
-    return <span>{this.state.time}</span>;
+    return (
+      <div className='time'>
+        {this.state.time}
+      </div>
+    );
   }
 }

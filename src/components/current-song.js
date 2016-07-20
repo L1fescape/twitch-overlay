@@ -18,7 +18,10 @@ export default class CurrentSong extends Component {
   fetchCurrentSong = () => {
     var request = new Request('/api/current');
 
-    return fetch(request).then(resp => resp.json()).then(this.parseResp.bind(this))
+    return fetch(request)
+      .then(resp => resp.json())
+      .then(this.parseResp.bind(this))
+      .catch(this.stopFetching.bind(this))
   }
 
   parseResp = (resp) => {
@@ -28,8 +31,12 @@ export default class CurrentSong extends Component {
     })
   }
 
+  stopFetching = () => {
+    clearInterval(this.interval);
+  }
+
   componentDidMount() {
-    setInterval(this.fetchCurrentSong, 1000);
+    this.interval = setInterval(this.fetchCurrentSong, 1000);
   }
 
   render() {

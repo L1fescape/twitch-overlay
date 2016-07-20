@@ -4,5 +4,6 @@
     "react",
     "babel-preset-stage-1",
     "react-hmre"
-  ]
+  ],
+  sourceMaps: true
 }
