@@ -16,7 +16,7 @@ export default class CurrentSong extends Component {
   }
 
   fetchCurrentSong = () => {
-    var request = new Request('/api/current');
+    var request = new Request('/api/v1/list');
 
     return fetch(request)
       .then(resp => resp.json())
@@ -25,9 +25,11 @@ export default class CurrentSong extends Component {
   }
 
   parseResp = (resp) => {
+    console.log(resp);
+    var track = resp[resp.length - 1];
     this.setState({
-      artist: resp.artist,
-      track: resp.track
+      artist: track.artist,
+      track: track.track
     })
   }
 

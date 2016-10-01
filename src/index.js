@@ -9,7 +9,8 @@ import Notifications from './containers/notifications';
 
 const store = configureStore();
 
-import './style.css'
+/* import './civ.css' */
+import './styles/overwatch.css'
 
 class Page extends Component {
   render() {
@@ -18,6 +19,7 @@ class Page extends Component {
         <div>
           <Banner />
           <Notifications />
+          <Webcam />
         </div>
       </Provider>
     );

@@ -34,7 +34,7 @@ var config = getConfig({
     proxy: {
        context: "/api",
        options: {
-         target: "http://localhost:8080",
+         target: "http://192.168.1.81:3001",
          pathRewrite: {
            "^/api": ""
          }
@@ -42,5 +42,10 @@ var config = getConfig({
      }
    }
 })
+
+
+config.plugins.push(new webpack.DefinePlugin({
+  'process.env': JSON.stringify(process.env || '')
+}));
 
 module.exports = config;
