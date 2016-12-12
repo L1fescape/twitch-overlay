@@ -1,6 +1,4 @@
 .time{
-  position: absolute;
-  top: 0;
-  right:0;
   white-space:nowrap;
+  padding: 10px;
 }

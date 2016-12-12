@@ -43,6 +43,8 @@ var config = getConfig({
    }
 })
 
+config.devtool = 'inline-source-map'
+
 
 config.plugins.push(new webpack.DefinePlugin({
   'process.env': JSON.stringify(process.env || '')

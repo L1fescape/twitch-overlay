@@ -1,5 +1,4 @@
 import * as actionTypes from '../constants/actionTypes';
-import { latestSubSelector }from '../selectors/subscribers';
 
 export function showNotification(type, user) {
   var message = `Thanks ${user.name} for following the stream!`

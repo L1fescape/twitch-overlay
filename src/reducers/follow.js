@@ -1,19 +1,20 @@
 import * as actionTypes from '../constants/actionTypes';
 
 const initialState = {
-  subscribers: [],
-  latestSub: ''
+  followers: [],
+  latest: {}
 };
 
-export default function subscriberReducer(state, action) {
+export default function folowReducer(state, action) {
   if (state === undefined) {
     state = initialState;
   }
 
   switch (action.type) {
-    case actionTypes.SUBSCRIBERS_FETCH_SUCCESS:
+    case actionTypes.FOLLOWERS_FETCH_SUCCESS:
+    console.log("action", action.payload)
       return {...state,
-        latestSub: action.payload
+        latest: action.payload
       }
 
     default:

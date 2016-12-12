@@ -25,11 +25,10 @@ export default class CurrentSong extends Component {
   }
 
   parseResp = (resp) => {
-    console.log(resp);
     var track = resp[resp.length - 1];
     this.setState({
       artist: track.artist,
-      track: track.track
+      track: track.title
     })
   }
 

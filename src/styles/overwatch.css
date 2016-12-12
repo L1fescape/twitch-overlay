@@ -4,14 +4,6 @@ html, body {
   font-family: 'Didact Gothic', sans-serif;
 }
 
-.banner {
-  padding: 10px;
-  width: 100%;
-  color: white;
-  position: relative;
-  background: purple;
-}
-
 h2 {
   margin: 0;
   padding: 20px;
@@ -19,16 +11,17 @@ h2 {
 
 .webcam {
   position: absolute;
-  top: 350px;
-  left: 0;
+  top: 400px;
+  left: 20px;
   background: black;
-  height: 340px;
+  height: 360px;
   width: 430px;
 }
 
 .current-song {
   position: absolute;
-  bottom: 0;
+  bottom: 16px;
+  left: 20px;
   color: white;
 }
 
@@ -48,4 +41,10 @@ h2 {
   padding: 20px;
   background: black;
   color: white;
+}
+
+
+  .background-transition > * {
+  transition: background-color 5s;
+  text-shadow: 1px 1px 2px black;
 }

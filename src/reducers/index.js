@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 
-import subscriberReducer from './subscriber';
+import followReducer from './follow';
 import notificationReducer from './notification';
 
 const rootReducer = combineReducers({
-  subscribers: subscriberReducer,
+  follow: followReducer,
   notifications: notificationReducer
 })
 
