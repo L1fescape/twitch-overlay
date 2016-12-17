@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PropTypes, Component } from 'react'
 import ReactDom from 'react-dom'
 import { connect } from 'react-redux'
 
@@ -16,8 +16,12 @@ class Banner extends Component {
     follower: {}
   }
 
+  static propTypes = {
+    channelID: PropTypes.string.isRequired
+  }
+
   fetchLatestFollow = () => {
-    this.props.dispatch(fetchLatestFollow("l1fescape"));
+    this.props.dispatch(fetchLatestFollow(this.props.channelID));
   }
 
   componentDidMount() {
@@ -34,7 +38,6 @@ class Banner extends Component {
     return (
       <div className="banner">
         <Followers latestFollower={follower} />
-        <Lights />
         <Time />
       </div>
     );

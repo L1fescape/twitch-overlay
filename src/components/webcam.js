@@ -7,6 +7,7 @@ export default class Webcam extends Component {
   render() {
     return (
       <div className="webcam">
+        <div className="webcam-placeholder"></div>
         <CurrentSong />
       </div>
     );

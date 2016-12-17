@@ -1,38 +1,14 @@
-import React, { Component } from 'react'
+import React  from 'react'
 import ReactDom from 'react-dom'
-import { Provider } from 'react-redux'
-import configureStore from './configureStore'
+import { Router, browserHistory } from 'react-router'
 
-import Banner from './containers/banner'
-import Webcam from './components/webcam'
-import Notifications from './containers/notifications';
-import BackgroundTransitionComponent from './utils/background-transition'
-
-const store = configureStore();
-
-const BackgroundBanner = BackgroundTransitionComponent(Banner);
-const BackgroundWebcam = BackgroundTransitionComponent(Webcam);
-
-/* import './civ.css' */
-import './styles/overwatch.css'
-
-class Page extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <div>
-          <BackgroundBanner />
-          <Notifications />
-          <BackgroundWebcam />
-        </div>
-      </Provider>
-    );
-  }
-}
+import AppRoutes from './appRoutes'
 
 const root = document.getElementById('app');
 
 ReactDom.render(
-  <Page />,
+  <Router history={browserHistory}>
+    {AppRoutes}
+  </Router>,
   root
 );

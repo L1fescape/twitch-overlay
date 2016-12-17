@@ -1,13 +1,15 @@
 .banner {
   display: flex;
+  position: absolute;
+  bottom: 0;
   width: 100%;
   color: white;
   background: black;
 }
 
-
 .follow {
   padding: 10px;
+  flex-grow: 1;
 }
 
 .lights {

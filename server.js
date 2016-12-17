@@ -1,9 +1,13 @@
+var path = require('path')
 var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
-app.use( bodyParser.json() )
 
 var PORT = process.env.PORT || 3000;
+var distRoot = './dist'
+
+app.use(bodyParser.json())
+app.use(express.static(distRoot))
 
 var songs = [];
 var lights = {
@@ -18,14 +22,14 @@ function createSong(title, artist) {
   })
 }
 
-app.post("/scrobble", (req, res) => {
+app.post("/api/scrobble", (req, res) => {
   console.log(req.body)
 
   res.json({});
 
 })
 
-app.get("/scrobble", (req, res) => {
+app.get("/api/scrobble", (req, res) => {
   console.log(req.query)
 
   var song = createSong(req.query.track, req.query.artist)
@@ -35,14 +39,14 @@ app.get("/scrobble", (req, res) => {
   res.json(song);
 })
 
-app.get("/lights", (req, res) => {
+app.get("/api/lights", (req, res) => {
   res.json({
     user: lights.user,
     lights: lights.state
   });
 })
 
-app.post("/lights", (req, res) => {
+app.post("/api/lights", (req, res) => {
   var user = req.body.user;
   var state = req.body.state;
 
@@ -56,8 +60,12 @@ app.post("/lights", (req, res) => {
   res.send();
 })
 
-app.get("/v1/list", (req, res) => {
+app.get("/api/list", (req, res) => {
   res.json(songs);
+})
+
+app.get("*", function(req, res) {
+  res.sendFile(path.join(__dirname, distRoot, "index.html"))
 })
 
 app.listen(PORT, function() {
