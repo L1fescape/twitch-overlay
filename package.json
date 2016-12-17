@@ -1,13 +1,13 @@
 {
-  "name": "overlay",
+  "name": "twitch-overlay",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && npm run api",
-    "api": "node server.js",
+    "start": "node server.js",
     "build": "webpack",
-    "dev": "hjs-dev-server"
+    "dev": "hjs-dev-server",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
