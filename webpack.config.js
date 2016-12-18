@@ -12,7 +12,7 @@ const src     = join(root, 'src');
 const modules = join(root, 'node_modules');
 const dest    = join(root, 'dist');
 
-const isDev = true;
+const isDev = process.env.NODE_ENV === 'development'
 
 var config = getConfig({
   isDev: isDev,
