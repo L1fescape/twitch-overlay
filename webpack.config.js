@@ -16,6 +16,7 @@ const isDev = process.env.NODE_ENV === 'development'
 
 const head = [
    /* '<link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">', */
+   '<meta name="viewport" content="width=device-width, initial-scale=1">'
 ]
 
 var config = getConfig({
@@ -44,11 +45,34 @@ var config = getConfig({
          }
        }
      }
+   },
+   module: {
+     loaders: [
+       { test: /\.css$/, loader: 'style-loader!css-loader' },
+       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
+       { test: /\.(woff|woff2)$/, loader:"url?prefix=font/&limit=5000" },
+       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
+       { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
+       { test: /\.json$/, loader: 'json-loader'},
+       { test: /\.scss$/, exclude: /node_modules/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap&includePaths[]=node_modules/compass-mixins/lib'},
+     ]
    }
 })
 
-config.devtool = 'inline-source-map'
+config.resolve.root = [src, modules];
+config.resolve.alias = {
+  'containers': join(src, 'containers'),
+  'components': join(src, 'components'),
+  'actions': join(src, 'actions'),
+  'reducers': join(src, 'reducers'),
+  'constants': join(src, 'constants'),
+  'selectors': join(src, 'selectors'),
+  'styles': join(src, 'styles'),
+  'utils': join(src, 'utils'),
+  'blog': join(root, 'blog'),
+};
 
+config.devtool = 'inline-source-map'
 
 config.plugins.push(new webpack.DefinePlugin({
   'process.env': JSON.stringify(process.env || '')

@@ -12,7 +12,7 @@ export default function backgroundTransition(WrappedComponent) {
       this.changeBg = setInterval(this.changeBackground, 5000);
     },
 
-    componentDidUnmount: function() {
+    componentWillUnmount: function() {
       clearInterval(this.changeBg);
     },
 

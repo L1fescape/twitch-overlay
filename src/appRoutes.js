@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router'
 import { Provider } from 'react-redux'
 import configureStore from './configureStore'
 
-
+import HomeContainer from './containers/home'
 import OverlayContainer from './containers/overlay'
 
 const store = configureStore();
@@ -30,8 +30,9 @@ class NoMatch extends Component {
 
 const AppRoutes = (
   <Route path="/" component={AppContainer}>
-    <Route path=":channelID" component={OverlayContainer}/>
-    <Route path="*" component={NoMatch}/>
+    <IndexRoute component={HomeContainer} />
+    <Route path=":channelID" component={OverlayContainer} />
+    <Route path="*" component={NoMatch} />
   </Route>
 )
 

@@ -6,7 +6,7 @@ import BackgroundTransitionComponent from '../../utils/background-transition'
 
 const BackgroundBanner = BackgroundTransitionComponent(Banner);
 
-import './overlay.css'
+import './overlay.scss'
 
 export default class Overlay extends Component {
   static contextTypes = {

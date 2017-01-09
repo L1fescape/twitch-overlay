@@ -29,7 +29,7 @@ class Banner extends Component {
     this.fetchInterval = setInterval(this.fetchLatestFollow, 10000);
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     clearInterval(this.fetchInterval);
   }
 
