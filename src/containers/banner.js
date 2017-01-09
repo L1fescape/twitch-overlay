@@ -34,9 +34,19 @@ class Banner extends Component {
   }
 
   render() {
-    const { follower } = this.props;
+    const { follower, position } = this.props;
+    let style = {
+      bottom: 0
+    }
+
+    if (position === "top") {
+      style = {
+        top: 0
+      }
+    }
+
     return (
-      <div className="banner">
+      <div className="banner" style={style}>
         <Followers latestFollower={follower} />
         <Time />
       </div>

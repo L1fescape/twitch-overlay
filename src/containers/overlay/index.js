@@ -15,10 +15,11 @@ export default class Overlay extends Component {
 
   render() {
     const { channelID } = this.props.params;
-    console.log(channelID)
+    const { query } = this.props.location;
+
     return (
       <div>
-        <BackgroundBanner channelID={channelID} />
+        <BackgroundBanner channelID={channelID} position={query["banner-position"]} />
       </div>
     );
   }

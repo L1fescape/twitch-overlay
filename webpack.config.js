@@ -14,6 +14,10 @@ const dest    = join(root, 'dist');
 
 const isDev = process.env.NODE_ENV === 'development'
 
+const head = [
+   /* '<link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">', */
+]
+
 var config = getConfig({
   isDev: isDev,
   https: false,
@@ -25,7 +29,7 @@ var config = getConfig({
     return {
       'index.html': context.defaultTemplate({
         title: 'Overlay',
-        head: '<link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">',
+        head: head.join(''),
         html: '<div id="app"></div>'
       })
     }
