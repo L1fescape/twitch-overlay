@@ -1,67 +1,50 @@
-var path = require('path')
-var express = require('express')
-var app = express()
-var bodyParser = require('body-parser')
+const path = require('path')
+const express = require('express')
+const app = express()
+const bodyParser = require('body-parser')
+const https = require('https')
 
-var PORT = process.env.PORT || 3000;
-var distRoot = './dist'
+const PORT = process.env.PORT || 3000
+const distRoot = './dist'
 
 app.use(bodyParser.json())
 app.use(express.static(distRoot))
 
-var songs = [];
-var lights = {
-  user: "",
-  state: "off"
-}
+const LASTFM_API_KEY = process.env.LASTFM_API_KEY
 
-function createSong(title, artist) {
-  return Object.assign({}, {
-    title,
-    artist
-  })
-}
-
-app.post("/api/scrobble", (req, res) => {
-  console.log(req.body)
-
-  res.json({});
-
-})
-
-app.get("/api/scrobble", (req, res) => {
-  console.log(req.query)
-
-  var song = createSong(req.query.track, req.query.artist)
-
-  songs.push(song)
-
-  res.json(song);
-})
-
-app.get("/api/lights", (req, res) => {
-  res.json({
-    user: lights.user,
-    lights: lights.state
-  });
-})
-
-app.post("/api/lights", (req, res) => {
-  var user = req.body.user;
-  var state = req.body.state;
-
-  console.log(req.body)
-
-  lights = {
-    user: user,
-    state: state
+function parseLatestTrack(lastfmData) {
+  // todo: better validation (with typechecks?)
+  if (!lastfmData || !lastfmData.recenttracks || !lastfmData.recenttracks.track || !lastfmData.recenttracks.track.length) {
+    return {};
   }
+  const track = lastfmData.recenttracks.track[0]
+  return {
+    artist: track.artist['#text'],
+    name: track.name,
+  }
+}
 
-  res.send();
-})
+app.get('/api/lastfm/latest/:username', (req, res) => {
+  const username = req.params ? req.params.username : ''
+  if (!username) {
+    return res.json({ error: 'specify username' })
+  }
+  const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${LASTFM_API_KEY}&format=json`
 
-app.get("/api/list", (req, res) => {
-  res.json(songs);
+  const lastfmRequest = https.get(url, resp => {
+    let data = ''
+    resp.on('data', (chunk) => {
+      data += chunk
+    })
+    resp.on('end', () => {
+      res.json(parseLatestTrack(JSON.parse(data)))
+    })
+  })
+
+  lastfmRequest.on('error', err => {
+    console.log(err)
+    res.json({ error: err.message })
+  })
 })
 
 app.get("*", function(req, res) {
