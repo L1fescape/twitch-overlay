@@ -55,5 +55,9 @@ export class LastFm extends React.Component<{}, State> {
         }
         return resp
       })
+      .catch(err => {
+        console.log(err)
+        return undefined
+      })
   }
 }
